@@ -1,6 +1,6 @@
 com\example\demo\controller\HelloController.class
 com\example\demo\DemoApplication.class
-com\example\demo\model\Project.class
-com\example\demo\controller\ProjectController.class
 com\example\demo\repository\ProjectRepository.class
 com\example\demo\controller\OpenProjectController.class
+com\example\demo\model\Project.class
+com\example\demo\controller\ProjectController.class

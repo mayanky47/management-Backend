@@ -23,7 +23,7 @@ import java.util.stream.Stream;
 
 @RestController // Marks this class as a REST controller
 @RequestMapping("/api") // Base path for all endpoints in this controller
-@CrossOrigin(origins = "http://localhost:5173") // Allow requests from your React frontend
+@CrossOrigin(origins = "*") // Allow requests from your React frontend
 public class ProjectController {
 
     @Autowired
