@@ -1,3 +1,4 @@
+D:\project\projects\backend\management-Backend\src\main\java\com\example\demo\controller\AnalysisController.java
 D:\project\projects\backend\management-Backend\src\main\java\com\example\demo\controller\CreateProjectController.java
 D:\project\projects\backend\management-Backend\src\main\java\com\example\demo\controller\HelloController.java
 D:\project\projects\backend\management-Backend\src\main\java\com\example\demo\controller\OpenProjectController.java
@@ -8,4 +9,6 @@ D:\project\projects\backend\management-Backend\src\main\java\com\example\demo\mo
 D:\project\projects\backend\management-Backend\src\main\java\com\example\demo\model\ProjectPackage.java
 D:\project\projects\backend\management-Backend\src\main\java\com\example\demo\repository\ProjectPackageRepository.java
 D:\project\projects\backend\management-Backend\src\main\java\com\example\demo\repository\ProjectRepository.java
+D:\project\projects\backend\management-Backend\src\main\java\com\example\demo\service\AnalysisService.java
+D:\project\projects\backend\management-Backend\src\main\java\com\example\demo\service\DependencyService.java
 D:\project\projects\backend\management-Backend\src\main\java\com\example\demo\service\ProjectCreationService.java

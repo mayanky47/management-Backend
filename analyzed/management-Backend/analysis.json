@@ -1,0 +1,95 @@
+{
+  "projectName" : "management-Backend",
+  "type" : "spring",
+  "analyzedAt" : "2025-11-08T04:57:18.3441976",
+  "projectUrl" : "http://localhost:8080",
+  "apiEndpoints" : [ {
+    "httpMethod" : "POST",
+    "path" : "/api/projects/{name}/analyze/spring",
+    "controller" : "SpringAnalyzerController"
+  }, {
+    "httpMethod" : "GET",
+    "path" : "/api/projects/{name}/analysis",
+    "controller" : "SpringAnalyzerController"
+  }, {
+    "httpMethod" : "POST",
+    "path" : "/api/analyze/projects/{name}",
+    "controller" : "AnalysisController"
+  }, {
+    "httpMethod" : "POST",
+    "path" : "/api/create/projects",
+    "controller" : "CreateProjectController"
+  }, {
+    "httpMethod" : "GET",
+    "path" : "/hello",
+    "controller" : "HelloController"
+  }, {
+    "httpMethod" : "GET",
+    "path" : "/api/packages/{name}",
+    "controller" : "PackageController"
+  }, {
+    "httpMethod" : "PUT",
+    "path" : "/api/packages/{name}",
+    "controller" : "PackageController"
+  }, {
+    "httpMethod" : "DELETE",
+    "path" : "/api/packages/{name}",
+    "controller" : "PackageController"
+  }, {
+    "httpMethod" : "GET",
+    "path" : "/api/projects",
+    "controller" : "ProjectController"
+  }, {
+    "httpMethod" : "GET",
+    "path" : "/api/projects/{name}",
+    "controller" : "ProjectController"
+  }, {
+    "httpMethod" : "POST",
+    "path" : "/api/projects",
+    "controller" : "ProjectController"
+  }, {
+    "httpMethod" : "PUT",
+    "path" : "/api/projects/{name}",
+    "controller" : "ProjectController"
+  }, {
+    "httpMethod" : "DELETE",
+    "path" : "/api/projects/{name}",
+    "controller" : "ProjectController"
+  }, {
+    "httpMethod" : "POST",
+    "path" : "/api/projects/{name}/dependencies/add-sqlite",
+    "controller" : "ProjectController"
+  } ],
+  "entities" : [ {
+    "name" : "SpringAnalyzerService",
+    "tableName" : "@Table("
+  }, {
+    "name" : "Project",
+    "tableName" : null
+  }, {
+    "name" : "ProjectPackage",
+    "tableName" : null
+  } ],
+  "dependencies" : [ {
+    "groupId" : "org.springframework.boot",
+    "artifactId" : "spring-boot-starter-web",
+    "version" : null
+  }, {
+    "groupId" : "org.springframework.boot",
+    "artifactId" : "spring-boot-starter-data-jpa",
+    "version" : null
+  }, {
+    "groupId" : "org.springdoc",
+    "artifactId" : "springdoc-openapi-starter-webmvc-ui",
+    "version" : "2.2.0"
+  } ],
+  "configuration" : {
+    "spring.datasource.url" : "jdbc:sqlite:projecthub.db",
+    "spring.datasource.driver-class-name" : "org.sqlite.JDBC",
+    "spring.jpa.database-platform" : "org.hibernate.community.dialect.SQLiteDialect",
+    "spring.jpa.hibernate.ddl-auto" : "update",
+    "spring.jpa.show-sql" : "true"
+  },
+  "error" : null,
+  "summary" : null
+}

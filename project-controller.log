@@ -1,0 +1,260 @@
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] ------------------< com.example:project-hub-backend >-------------------
+[INFO] Building project-hub-backend 0.0.1-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] >>> spring-boot-maven-plugin:3.3.1:run (default-cli) > test-compile @ project-hub-backend >>>
+[INFO] 
+[INFO] --- maven-resources-plugin:3.3.1:resources (default-resources) @ project-hub-backend ---
+[INFO] Copying 1 resource from src\main\resources to target\classes
+[INFO] Copying 2 resources from src\main\resources to target\classes
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.13.0:compile (default-compile) @ project-hub-backend ---
+[INFO] Recompiling the module because of added or removed source files.
+[INFO] Compiling 14 source files with javac [debug parameters release 17] to target\classes
+[INFO] Annotation processing is enabled because one or more processors were found
+  on the class path. A future release of javac may disable annotation processing
+  unless at least one processor is specified by name (-processor), or a search
+  path is specified (--processor-path, --processor-module-path), or annotation
+  processing is enabled explicitly (-proc:only, -proc:full).
+  Use -Xlint:-options to suppress this message.
+  Use -proc:none to disable annotation processing.
+[INFO] 
+[INFO] --- maven-resources-plugin:3.3.1:testResources (default-testResources) @ project-hub-backend ---
+[INFO] skip non existing resourceDirectory D:\project\projects\backend\management-Backend\src\test\resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.13.0:testCompile (default-testCompile) @ project-hub-backend ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] 
+[INFO] <<< spring-boot-maven-plugin:3.3.1:run (default-cli) < test-compile @ project-hub-backend <<<
+[INFO] 
+[INFO] 
+[INFO] --- spring-boot-maven-plugin:3.3.1:run (default-cli) @ project-hub-backend ---
+[INFO] Attaching agents: []
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v3.3.1)
+
+2025-10-29T14:48:46.532+05:30  INFO 21048 --- [  restartedMain] com.example.demo.DemoApplication         : Starting DemoApplication using Java 21.0.2 with PID 21048 (D:\project\projects\backend\management-Backend\target\classes started by Mayank in D:\project\projects\backend\management-Backend)
+2025-10-29T14:48:46.535+05:30  INFO 21048 --- [  restartedMain] com.example.demo.DemoApplication         : No active profile set, falling back to 1 default profile: "default"
+2025-10-29T14:48:46.572+05:30  INFO 21048 --- [  restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-10-29T14:48:46.572+05:30  INFO 21048 --- [  restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-10-29T14:48:47.071+05:30  INFO 21048 --- [  restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-10-29T14:48:47.110+05:30  INFO 21048 --- [  restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 39 ms. Found 2 JPA repository interfaces.
+2025-10-29T14:48:47.532+05:30  INFO 21048 --- [  restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-10-29T14:48:47.540+05:30  INFO 21048 --- [  restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-10-29T14:48:47.540+05:30  INFO 21048 --- [  restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.25]
+2025-10-29T14:48:47.580+05:30  INFO 21048 --- [  restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-10-29T14:48:47.588+05:30  INFO 21048 --- [  restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1016 ms
+2025-10-29T14:48:47.696+05:30  INFO 21048 --- [  restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-10-29T14:48:47.730+05:30  INFO 21048 --- [  restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.2.Final
+2025-10-29T14:48:47.760+05:30  INFO 21048 --- [  restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-10-29T14:48:47.992+05:30  INFO 21048 --- [  restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-10-29T14:48:48.010+05:30  INFO 21048 --- [  restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-10-29T14:48:48.130+05:30  INFO 21048 --- [  restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.sqlite.jdbc4.JDBC4Connection@15346127
+2025-10-29T14:48:48.132+05:30  INFO 21048 --- [  restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-10-29T14:48:48.860+05:30  INFO 21048 --- [  restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-10-29T14:48:48.889+05:30  INFO 21048 --- [  restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-10-29T14:48:49.178+05:30  WARN 21048 --- [  restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-10-29T14:48:49.430+05:30  INFO 21048 --- [  restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2025-10-29T14:48:49.462+05:30  INFO 21048 --- [  restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-10-29T14:48:49.470+05:30  INFO 21048 --- [  restartedMain] com.example.demo.DemoApplication         : Started DemoApplication in 3.325 seconds (process running for 4.639)
+2025-10-29T14:49:05.190+05:30  INFO 21048 --- [nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-10-29T14:49:05.190+05:30  INFO 21048 --- [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-10-29T14:49:05.191+05:30  INFO 21048 --- [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+Hibernate: select p1_0.name,p1_0.api_metadata,p1_0.component_metadata,p1_0.future_plans,p1_0.past_activities,p1_0.path,p1_0.purpose,p1_0.type from project p1_0
+Hibernate: select p1_0.name,p1_0.api_metadata,p1_0.component_metadata,p1_0.future_plans,p1_0.past_activities,p1_0.path,p1_0.purpose,p1_0.type from project p1_0
+Hibernate: select p1_0.name,p1_0.api_metadata,p1_0.component_metadata,p1_0.future_plans,p1_0.past_activities,p1_0.path,p1_0.purpose,p1_0.type from project p1_0
+Hibernate: select p1_0.name,p1_0.api_metadata,p1_0.component_metadata,p1_0.future_plans,p1_0.past_activities,p1_0.path,p1_0.purpose,p1_0.type from project p1_0
+Hibernate: select pp1_0.package_name,pp1_0.due_date,pp1_0.priority,pp1_0.purpose,pp1_0.status from project_package pp1_0 where pp1_0.package_name=?
+Hibernate: select p1_0.package_name,p1_0.name,p1_0.api_metadata,p1_0.component_metadata,p1_0.future_plans,p1_0.past_activities,p1_0.path,p1_0.purpose,p1_0.type from project p1_0 where p1_0.package_name=?
+Hibernate: select pp1_0.package_name,pp1_0.due_date,pp1_0.priority,pp1_0.purpose,pp1_0.status from project_package pp1_0 where pp1_0.package_name=?
+Hibernate: select p1_0.package_name,p1_0.name,p1_0.api_metadata,p1_0.component_metadata,p1_0.future_plans,p1_0.past_activities,p1_0.path,p1_0.purpose,p1_0.type from project p1_0 where p1_0.package_name=?
+Hibernate: select pp1_0.package_name,pp1_0.due_date,pp1_0.priority,pp1_0.purpose,pp1_0.status from project_package pp1_0
+Hibernate: select p1_0.package_name,p1_0.name,p1_0.api_metadata,p1_0.component_metadata,p1_0.future_plans,p1_0.past_activities,p1_0.path,p1_0.purpose,p1_0.type from project p1_0 where p1_0.package_name=?
+Hibernate: select p1_0.package_name,p1_0.name,p1_0.api_metadata,p1_0.component_metadata,p1_0.future_plans,p1_0.past_activities,p1_0.path,p1_0.purpose,p1_0.type from project p1_0 where p1_0.package_name=?
+Hibernate: select p1_0.package_name,p1_0.name,p1_0.api_metadata,p1_0.component_metadata,p1_0.future_plans,p1_0.past_activities,p1_0.path,p1_0.purpose,p1_0.type from project p1_0 where p1_0.package_name=?
+Hibernate: select p1_0.package_name,p1_0.name,p1_0.api_metadata,p1_0.component_metadata,p1_0.future_plans,p1_0.past_activities,p1_0.path,p1_0.purpose,p1_0.type from project p1_0 where p1_0.package_name=?
+Hibernate: select p1_0.package_name,p1_0.name,p1_0.api_metadata,p1_0.component_metadata,p1_0.future_plans,p1_0.past_activities,p1_0.path,p1_0.purpose,p1_0.type from project p1_0 where p1_0.package_name=?
+Hibernate: select pp1_0.package_name,pp1_0.due_date,pp1_0.priority,pp1_0.purpose,pp1_0.status from project_package pp1_0
+Hibernate: select p1_0.package_name,p1_0.name,p1_0.api_metadata,p1_0.component_metadata,p1_0.future_plans,p1_0.past_activities,p1_0.path,p1_0.purpose,p1_0.type from project p1_0 where p1_0.package_name=?
+Hibernate: select p1_0.package_name,p1_0.name,p1_0.api_metadata,p1_0.component_metadata,p1_0.future_plans,p1_0.past_activities,p1_0.path,p1_0.purpose,p1_0.type from project p1_0 where p1_0.package_name=?
+Hibernate: select p1_0.package_name,p1_0.name,p1_0.api_metadata,p1_0.component_metadata,p1_0.future_plans,p1_0.past_activities,p1_0.path,p1_0.purpose,p1_0.type from project p1_0 where p1_0.package_name=?
+Hibernate: select p1_0.package_name,p1_0.name,p1_0.api_metadata,p1_0.component_metadata,p1_0.future_plans,p1_0.past_activities,p1_0.path,p1_0.purpose,p1_0.type from project p1_0 where p1_0.package_name=?
+Hibernate: select p1_0.package_name,p1_0.name,p1_0.api_metadata,p1_0.component_metadata,p1_0.future_plans,p1_0.past_activities,p1_0.path,p1_0.purpose,p1_0.type from project p1_0 where p1_0.package_name=?
+Hibernate: select p1_0.name,p1_0.api_metadata,p1_0.component_metadata,p1_0.future_plans,p1_0.past_activities,p1_0.path,p1_0.purpose,p1_0.type from project p1_0
+Hibernate: select pp1_0.package_name,pp1_0.due_date,pp1_0.priority,pp1_0.purpose,pp1_0.status from project_package pp1_0 where pp1_0.package_name=?
+Hibernate: select p1_0.package_name,p1_0.name,p1_0.api_metadata,p1_0.component_metadata,p1_0.future_plans,p1_0.past_activities,p1_0.path,p1_0.purpose,p1_0.type from project p1_0 where p1_0.package_name=?
+Hibernate: select pp1_0.package_name,pp1_0.due_date,pp1_0.priority,pp1_0.purpose,pp1_0.status from project_package pp1_0 where pp1_0.package_name=?
+Hibernate: select p1_0.name,p1_0.api_metadata,p1_0.component_metadata,p1_0.future_plans,p1_0.past_activities,p1_0.path,p1_0.purpose,p1_0.type from project p1_0
+Hibernate: select p1_0.package_name,p1_0.name,p1_0.api_metadata,p1_0.component_metadata,p1_0.future_plans,p1_0.past_activities,p1_0.path,p1_0.purpose,p1_0.type from project p1_0 where p1_0.package_name=?
+Hibernate: select pp1_0.package_name,pp1_0.due_date,pp1_0.priority,pp1_0.purpose,pp1_0.status from project_package pp1_0
+Hibernate: select p1_0.package_name,p1_0.name,p1_0.api_metadata,p1_0.component_metadata,p1_0.future_plans,p1_0.past_activities,p1_0.path,p1_0.purpose,p1_0.type from project p1_0 where p1_0.package_name=?
+Hibernate: select p1_0.package_name,p1_0.name,p1_0.api_metadata,p1_0.component_metadata,p1_0.future_plans,p1_0.past_activities,p1_0.path,p1_0.purpose,p1_0.type from project p1_0 where p1_0.package_name=?
+Hibernate: select p1_0.package_name,p1_0.name,p1_0.api_metadata,p1_0.component_metadata,p1_0.future_plans,p1_0.past_activities,p1_0.path,p1_0.purpose,p1_0.type from project p1_0 where p1_0.package_name=?
+Hibernate: select p1_0.package_name,p1_0.name,p1_0.api_metadata,p1_0.component_metadata,p1_0.future_plans,p1_0.past_activities,p1_0.path,p1_0.purpose,p1_0.type from project p1_0 where p1_0.package_name=?
+Hibernate: select p1_0.package_name,p1_0.name,p1_0.api_metadata,p1_0.component_metadata,p1_0.future_plans,p1_0.past_activities,p1_0.path,p1_0.purpose,p1_0.type from project p1_0 where p1_0.package_name=?
+Hibernate: select pp1_0.package_name,pp1_0.due_date,pp1_0.priority,pp1_0.purpose,pp1_0.status from project_package pp1_0
+Hibernate: select p1_0.package_name,p1_0.name,p1_0.api_metadata,p1_0.component_metadata,p1_0.future_plans,p1_0.past_activities,p1_0.path,p1_0.purpose,p1_0.type from project p1_0 where p1_0.package_name=?
+Hibernate: select p1_0.package_name,p1_0.name,p1_0.api_metadata,p1_0.component_metadata,p1_0.future_plans,p1_0.past_activities,p1_0.path,p1_0.purpose,p1_0.type from project p1_0 where p1_0.package_name=?
+Hibernate: select p1_0.package_name,p1_0.name,p1_0.api_metadata,p1_0.component_metadata,p1_0.future_plans,p1_0.past_activities,p1_0.path,p1_0.purpose,p1_0.type from project p1_0 where p1_0.package_name=?
+Hibernate: select p1_0.package_name,p1_0.name,p1_0.api_metadata,p1_0.component_metadata,p1_0.future_plans,p1_0.past_activities,p1_0.path,p1_0.purpose,p1_0.type from project p1_0 where p1_0.package_name=?
+Hibernate: select p1_0.package_name,p1_0.name,p1_0.api_metadata,p1_0.component_metadata,p1_0.future_plans,p1_0.past_activities,p1_0.path,p1_0.purpose,p1_0.type from project p1_0 where p1_0.package_name=?
+Hibernate: select p1_0.name,p1_0.api_metadata,p1_0.component_metadata,p1_0.future_plans,p1_0.past_activities,p1_0.path,p1_0.purpose,p1_0.type from project p1_0
+Hibernate: select pp1_0.package_name,pp1_0.due_date,pp1_0.priority,pp1_0.purpose,pp1_0.status from project_package pp1_0 where pp1_0.package_name=?
+Hibernate: select p1_0.package_name,p1_0.name,p1_0.api_metadata,p1_0.component_metadata,p1_0.future_plans,p1_0.past_activities,p1_0.path,p1_0.purpose,p1_0.type from project p1_0 where p1_0.package_name=?
+Hibernate: select pp1_0.package_name,pp1_0.due_date,pp1_0.priority,pp1_0.purpose,pp1_0.status from project_package pp1_0 where pp1_0.package_name=?
+Hibernate: select p1_0.package_name,p1_0.name,p1_0.api_metadata,p1_0.component_metadata,p1_0.future_plans,p1_0.past_activities,p1_0.path,p1_0.purpose,p1_0.type from project p1_0 where p1_0.package_name=?
+Hibernate: select p1_0.name,p1_0.api_metadata,p1_0.component_metadata,p1_0.future_plans,p1_0.past_activities,p1_0.path,p1_0.purpose,p1_0.type from project p1_0
+Hibernate: select pp1_0.package_name,pp1_0.due_date,pp1_0.priority,pp1_0.purpose,pp1_0.status from project_package pp1_0
+Hibernate: select p1_0.package_name,p1_0.name,p1_0.api_metadata,p1_0.component_metadata,p1_0.future_plans,p1_0.past_activities,p1_0.path,p1_0.purpose,p1_0.type from project p1_0 where p1_0.package_name=?
+Hibernate: select p1_0.package_name,p1_0.name,p1_0.api_metadata,p1_0.component_metadata,p1_0.future_plans,p1_0.past_activities,p1_0.path,p1_0.purpose,p1_0.type from project p1_0 where p1_0.package_name=?
+Hibernate: select p1_0.package_name,p1_0.name,p1_0.api_metadata,p1_0.component_metadata,p1_0.future_plans,p1_0.past_activities,p1_0.path,p1_0.purpose,p1_0.type from project p1_0 where p1_0.package_name=?
+Hibernate: select p1_0.package_name,p1_0.name,p1_0.api_metadata,p1_0.component_metadata,p1_0.future_plans,p1_0.past_activities,p1_0.path,p1_0.purpose,p1_0.type from project p1_0 where p1_0.package_name=?
+Hibernate: select p1_0.package_name,p1_0.name,p1_0.api_metadata,p1_0.component_metadata,p1_0.future_plans,p1_0.past_activities,p1_0.path,p1_0.purpose,p1_0.type from project p1_0 where p1_0.package_name=?
+Hibernate: select pp1_0.package_name,pp1_0.due_date,pp1_0.priority,pp1_0.purpose,pp1_0.status from project_package pp1_0
+Hibernate: select p1_0.package_name,p1_0.name,p1_0.api_metadata,p1_0.component_metadata,p1_0.future_plans,p1_0.past_activities,p1_0.path,p1_0.purpose,p1_0.type from project p1_0 where p1_0.package_name=?
+Hibernate: select p1_0.package_name,p1_0.name,p1_0.api_metadata,p1_0.component_metadata,p1_0.future_plans,p1_0.past_activities,p1_0.path,p1_0.purpose,p1_0.type from project p1_0 where p1_0.package_name=?
+Hibernate: select p1_0.package_name,p1_0.name,p1_0.api_metadata,p1_0.component_metadata,p1_0.future_plans,p1_0.past_activities,p1_0.path,p1_0.purpose,p1_0.type from project p1_0 where p1_0.package_name=?
+Hibernate: select p1_0.package_name,p1_0.name,p1_0.api_metadata,p1_0.component_metadata,p1_0.future_plans,p1_0.past_activities,p1_0.path,p1_0.purpose,p1_0.type from project p1_0 where p1_0.package_name=?
+Hibernate: select p1_0.package_name,p1_0.name,p1_0.api_metadata,p1_0.component_metadata,p1_0.future_plans,p1_0.past_activities,p1_0.path,p1_0.purpose,p1_0.type from project p1_0 where p1_0.package_name=?
+Hibernate: select pp1_0.package_name,pp1_0.due_date,pp1_0.priority,pp1_0.purpose,pp1_0.status from project_package pp1_0
+Hibernate: select p1_0.package_name,p1_0.name,p1_0.api_metadata,p1_0.component_metadata,p1_0.future_plans,p1_0.past_activities,p1_0.path,p1_0.purpose,p1_0.type from project p1_0 where p1_0.package_name=?
+Hibernate: select p1_0.package_name,p1_0.name,p1_0.api_metadata,p1_0.component_metadata,p1_0.future_plans,p1_0.past_activities,p1_0.path,p1_0.purpose,p1_0.type from project p1_0 where p1_0.package_name=?
+Hibernate: select p1_0.package_name,p1_0.name,p1_0.api_metadata,p1_0.component_metadata,p1_0.future_plans,p1_0.past_activities,p1_0.path,p1_0.purpose,p1_0.type from project p1_0 where p1_0.package_name=?
+Hibernate: select p1_0.package_name,p1_0.name,p1_0.api_metadata,p1_0.component_metadata,p1_0.future_plans,p1_0.past_activities,p1_0.path,p1_0.purpose,p1_0.type from project p1_0 where p1_0.package_name=?
+Hibernate: select p1_0.package_name,p1_0.name,p1_0.api_metadata,p1_0.component_metadata,p1_0.future_plans,p1_0.past_activities,p1_0.path,p1_0.purpose,p1_0.type from project p1_0 where p1_0.package_name=?
+Hibernate: select pp1_0.package_name,pp1_0.due_date,pp1_0.priority,pp1_0.purpose,pp1_0.status from project_package pp1_0
+Hibernate: select p1_0.package_name,p1_0.name,p1_0.api_metadata,p1_0.component_metadata,p1_0.future_plans,p1_0.past_activities,p1_0.path,p1_0.purpose,p1_0.type from project p1_0 where p1_0.package_name=?
+Hibernate: select p1_0.package_name,p1_0.name,p1_0.api_metadata,p1_0.component_metadata,p1_0.future_plans,p1_0.past_activities,p1_0.path,p1_0.purpose,p1_0.type from project p1_0 where p1_0.package_name=?
+Hibernate: select p1_0.package_name,p1_0.name,p1_0.api_metadata,p1_0.component_metadata,p1_0.future_plans,p1_0.past_activities,p1_0.path,p1_0.purpose,p1_0.type from project p1_0 where p1_0.package_name=?
+Hibernate: select p1_0.package_name,p1_0.name,p1_0.api_metadata,p1_0.component_metadata,p1_0.future_plans,p1_0.past_activities,p1_0.path,p1_0.purpose,p1_0.type from project p1_0 where p1_0.package_name=?
+Hibernate: select p1_0.package_name,p1_0.name,p1_0.api_metadata,p1_0.component_metadata,p1_0.future_plans,p1_0.past_activities,p1_0.path,p1_0.purpose,p1_0.type from project p1_0 where p1_0.package_name=?
+Hibernate: select pp1_0.package_name,pp1_0.due_date,pp1_0.priority,pp1_0.purpose,pp1_0.status from project_package pp1_0
+Hibernate: select p1_0.package_name,p1_0.name,p1_0.api_metadata,p1_0.component_metadata,p1_0.future_plans,p1_0.past_activities,p1_0.path,p1_0.purpose,p1_0.type from project p1_0 where p1_0.package_name=?
+Hibernate: select p1_0.package_name,p1_0.name,p1_0.api_metadata,p1_0.component_metadata,p1_0.future_plans,p1_0.past_activities,p1_0.path,p1_0.purpose,p1_0.type from project p1_0 where p1_0.package_name=?
+Hibernate: select p1_0.package_name,p1_0.name,p1_0.api_metadata,p1_0.component_metadata,p1_0.future_plans,p1_0.past_activities,p1_0.path,p1_0.purpose,p1_0.type from project p1_0 where p1_0.package_name=?
+Hibernate: select p1_0.package_name,p1_0.name,p1_0.api_metadata,p1_0.component_metadata,p1_0.future_plans,p1_0.past_activities,p1_0.path,p1_0.purpose,p1_0.type from project p1_0 where p1_0.package_name=?
+Hibernate: select p1_0.package_name,p1_0.name,p1_0.api_metadata,p1_0.component_metadata,p1_0.future_plans,p1_0.past_activities,p1_0.path,p1_0.purpose,p1_0.type from project p1_0 where p1_0.package_name=?
+Hibernate: select pp1_0.package_name,pp1_0.due_date,pp1_0.priority,pp1_0.purpose,pp1_0.status from project_package pp1_0
+Hibernate: select p1_0.package_name,p1_0.name,p1_0.api_metadata,p1_0.component_metadata,p1_0.future_plans,p1_0.past_activities,p1_0.path,p1_0.purpose,p1_0.type from project p1_0 where p1_0.package_name=?
+Hibernate: select p1_0.package_name,p1_0.name,p1_0.api_metadata,p1_0.component_metadata,p1_0.future_plans,p1_0.past_activities,p1_0.path,p1_0.purpose,p1_0.type from project p1_0 where p1_0.package_name=?
+Hibernate: select p1_0.package_name,p1_0.name,p1_0.api_metadata,p1_0.component_metadata,p1_0.future_plans,p1_0.past_activities,p1_0.path,p1_0.purpose,p1_0.type from project p1_0 where p1_0.package_name=?
+Hibernate: select p1_0.package_name,p1_0.name,p1_0.api_metadata,p1_0.component_metadata,p1_0.future_plans,p1_0.past_activities,p1_0.path,p1_0.purpose,p1_0.type from project p1_0 where p1_0.package_name=?
+Hibernate: select p1_0.package_name,p1_0.name,p1_0.api_metadata,p1_0.component_metadata,p1_0.future_plans,p1_0.past_activities,p1_0.path,p1_0.purpose,p1_0.type from project p1_0 where p1_0.package_name=?
+Hibernate: select pp1_0.package_name,pp1_0.due_date,pp1_0.priority,pp1_0.purpose,pp1_0.status from project_package pp1_0
+Hibernate: select p1_0.package_name,p1_0.name,p1_0.api_metadata,p1_0.component_metadata,p1_0.future_plans,p1_0.past_activities,p1_0.path,p1_0.purpose,p1_0.type from project p1_0 where p1_0.package_name=?
+Hibernate: select p1_0.package_name,p1_0.name,p1_0.api_metadata,p1_0.component_metadata,p1_0.future_plans,p1_0.past_activities,p1_0.path,p1_0.purpose,p1_0.type from project p1_0 where p1_0.package_name=?
+Hibernate: select p1_0.package_name,p1_0.name,p1_0.api_metadata,p1_0.component_metadata,p1_0.future_plans,p1_0.past_activities,p1_0.path,p1_0.purpose,p1_0.type from project p1_0 where p1_0.package_name=?
+Hibernate: select p1_0.package_name,p1_0.name,p1_0.api_metadata,p1_0.component_metadata,p1_0.future_plans,p1_0.past_activities,p1_0.path,p1_0.purpose,p1_0.type from project p1_0 where p1_0.package_name=?
+Hibernate: select p1_0.package_name,p1_0.name,p1_0.api_metadata,p1_0.component_metadata,p1_0.future_plans,p1_0.past_activities,p1_0.path,p1_0.purpose,p1_0.type from project p1_0 where p1_0.package_name=?
+Hibernate: select pp1_0.package_name,pp1_0.due_date,pp1_0.priority,pp1_0.purpose,pp1_0.status from project_package pp1_0
+Hibernate: select p1_0.package_name,p1_0.name,p1_0.api_metadata,p1_0.component_metadata,p1_0.future_plans,p1_0.past_activities,p1_0.path,p1_0.purpose,p1_0.type from project p1_0 where p1_0.package_name=?
+Hibernate: select p1_0.package_name,p1_0.name,p1_0.api_metadata,p1_0.component_metadata,p1_0.future_plans,p1_0.past_activities,p1_0.path,p1_0.purpose,p1_0.type from project p1_0 where p1_0.package_name=?
+Hibernate: select p1_0.package_name,p1_0.name,p1_0.api_metadata,p1_0.component_metadata,p1_0.future_plans,p1_0.past_activities,p1_0.path,p1_0.purpose,p1_0.type from project p1_0 where p1_0.package_name=?
+Hibernate: select p1_0.package_name,p1_0.name,p1_0.api_metadata,p1_0.component_metadata,p1_0.future_plans,p1_0.past_activities,p1_0.path,p1_0.purpose,p1_0.type from project p1_0 where p1_0.package_name=?
+Hibernate: select p1_0.package_name,p1_0.name,p1_0.api_metadata,p1_0.component_metadata,p1_0.future_plans,p1_0.past_activities,p1_0.path,p1_0.purpose,p1_0.type from project p1_0 where p1_0.package_name=?
+Hibernate: select pp1_0.package_name,pp1_0.due_date,pp1_0.priority,pp1_0.purpose,pp1_0.status from project_package pp1_0
+Hibernate: select p1_0.package_name,p1_0.name,p1_0.api_metadata,p1_0.component_metadata,p1_0.future_plans,p1_0.past_activities,p1_0.path,p1_0.purpose,p1_0.type from project p1_0 where p1_0.package_name=?
+Hibernate: select p1_0.package_name,p1_0.name,p1_0.api_metadata,p1_0.component_metadata,p1_0.future_plans,p1_0.past_activities,p1_0.path,p1_0.purpose,p1_0.type from project p1_0 where p1_0.package_name=?
+Hibernate: select p1_0.package_name,p1_0.name,p1_0.api_metadata,p1_0.component_metadata,p1_0.future_plans,p1_0.past_activities,p1_0.path,p1_0.purpose,p1_0.type from project p1_0 where p1_0.package_name=?
+Hibernate: select p1_0.package_name,p1_0.name,p1_0.api_metadata,p1_0.component_metadata,p1_0.future_plans,p1_0.past_activities,p1_0.path,p1_0.purpose,p1_0.type from project p1_0 where p1_0.package_name=?
+Hibernate: select p1_0.package_name,p1_0.name,p1_0.api_metadata,p1_0.component_metadata,p1_0.future_plans,p1_0.past_activities,p1_0.path,p1_0.purpose,p1_0.type from project p1_0 where p1_0.package_name=?
+Hibernate: select pp1_0.package_name,pp1_0.due_date,pp1_0.priority,pp1_0.purpose,pp1_0.status from project_package pp1_0
+Hibernate: select p1_0.package_name,p1_0.name,p1_0.api_metadata,p1_0.component_metadata,p1_0.future_plans,p1_0.past_activities,p1_0.path,p1_0.purpose,p1_0.type from project p1_0 where p1_0.package_name=?
+Hibernate: select p1_0.package_name,p1_0.name,p1_0.api_metadata,p1_0.component_metadata,p1_0.future_plans,p1_0.past_activities,p1_0.path,p1_0.purpose,p1_0.type from project p1_0 where p1_0.package_name=?
+Hibernate: select p1_0.package_name,p1_0.name,p1_0.api_metadata,p1_0.component_metadata,p1_0.future_plans,p1_0.past_activities,p1_0.path,p1_0.purpose,p1_0.type from project p1_0 where p1_0.package_name=?
+Hibernate: select p1_0.package_name,p1_0.name,p1_0.api_metadata,p1_0.component_metadata,p1_0.future_plans,p1_0.past_activities,p1_0.path,p1_0.purpose,p1_0.type from project p1_0 where p1_0.package_name=?
+Hibernate: select p1_0.package_name,p1_0.name,p1_0.api_metadata,p1_0.component_metadata,p1_0.future_plans,p1_0.past_activities,p1_0.path,p1_0.purpose,p1_0.type from project p1_0 where p1_0.package_name=?
+Hibernate: select pp1_0.package_name,pp1_0.due_date,pp1_0.priority,pp1_0.purpose,pp1_0.status from project_package pp1_0
+Hibernate: select p1_0.package_name,p1_0.name,p1_0.api_metadata,p1_0.component_metadata,p1_0.future_plans,p1_0.past_activities,p1_0.path,p1_0.purpose,p1_0.type from project p1_0 where p1_0.package_name=?
+Hibernate: select p1_0.package_name,p1_0.name,p1_0.api_metadata,p1_0.component_metadata,p1_0.future_plans,p1_0.past_activities,p1_0.path,p1_0.purpose,p1_0.type from project p1_0 where p1_0.package_name=?
+Hibernate: select p1_0.package_name,p1_0.name,p1_0.api_metadata,p1_0.component_metadata,p1_0.future_plans,p1_0.past_activities,p1_0.path,p1_0.purpose,p1_0.type from project p1_0 where p1_0.package_name=?
+Hibernate: select p1_0.package_name,p1_0.name,p1_0.api_metadata,p1_0.component_metadata,p1_0.future_plans,p1_0.past_activities,p1_0.path,p1_0.purpose,p1_0.type from project p1_0 where p1_0.package_name=?
+Hibernate: select p1_0.package_name,p1_0.name,p1_0.api_metadata,p1_0.component_metadata,p1_0.future_plans,p1_0.past_activities,p1_0.path,p1_0.purpose,p1_0.type from project p1_0 where p1_0.package_name=?
+Hibernate: select pp1_0.package_name,pp1_0.due_date,pp1_0.priority,pp1_0.purpose,pp1_0.status from project_package pp1_0
+Hibernate: select p1_0.package_name,p1_0.name,p1_0.api_metadata,p1_0.component_metadata,p1_0.future_plans,p1_0.past_activities,p1_0.path,p1_0.purpose,p1_0.type from project p1_0 where p1_0.package_name=?
+Hibernate: select p1_0.package_name,p1_0.name,p1_0.api_metadata,p1_0.component_metadata,p1_0.future_plans,p1_0.past_activities,p1_0.path,p1_0.purpose,p1_0.type from project p1_0 where p1_0.package_name=?
+Hibernate: select p1_0.package_name,p1_0.name,p1_0.api_metadata,p1_0.component_metadata,p1_0.future_plans,p1_0.past_activities,p1_0.path,p1_0.purpose,p1_0.type from project p1_0 where p1_0.package_name=?
+Hibernate: select p1_0.package_name,p1_0.name,p1_0.api_metadata,p1_0.component_metadata,p1_0.future_plans,p1_0.past_activities,p1_0.path,p1_0.purpose,p1_0.type from project p1_0 where p1_0.package_name=?
+Hibernate: select p1_0.package_name,p1_0.name,p1_0.api_metadata,p1_0.component_metadata,p1_0.future_plans,p1_0.past_activities,p1_0.path,p1_0.purpose,p1_0.type from project p1_0 where p1_0.package_name=?
+Hibernate: select pp1_0.package_name,pp1_0.due_date,pp1_0.priority,pp1_0.purpose,pp1_0.status from project_package pp1_0
+Hibernate: select p1_0.package_name,p1_0.name,p1_0.api_metadata,p1_0.component_metadata,p1_0.future_plans,p1_0.past_activities,p1_0.path,p1_0.purpose,p1_0.type from project p1_0 where p1_0.package_name=?
+Hibernate: select p1_0.package_name,p1_0.name,p1_0.api_metadata,p1_0.component_metadata,p1_0.future_plans,p1_0.past_activities,p1_0.path,p1_0.purpose,p1_0.type from project p1_0 where p1_0.package_name=?
+Hibernate: select p1_0.package_name,p1_0.name,p1_0.api_metadata,p1_0.component_metadata,p1_0.future_plans,p1_0.past_activities,p1_0.path,p1_0.purpose,p1_0.type from project p1_0 where p1_0.package_name=?
+Hibernate: select p1_0.package_name,p1_0.name,p1_0.api_metadata,p1_0.component_metadata,p1_0.future_plans,p1_0.past_activities,p1_0.path,p1_0.purpose,p1_0.type from project p1_0 where p1_0.package_name=?
+Hibernate: select p1_0.package_name,p1_0.name,p1_0.api_metadata,p1_0.component_metadata,p1_0.future_plans,p1_0.past_activities,p1_0.path,p1_0.purpose,p1_0.type from project p1_0 where p1_0.package_name=?
+Hibernate: select pp1_0.package_name,pp1_0.due_date,pp1_0.priority,pp1_0.purpose,pp1_0.status from project_package pp1_0
+Hibernate: select p1_0.package_name,p1_0.name,p1_0.api_metadata,p1_0.component_metadata,p1_0.future_plans,p1_0.past_activities,p1_0.path,p1_0.purpose,p1_0.type from project p1_0 where p1_0.package_name=?
+Hibernate: select p1_0.package_name,p1_0.name,p1_0.api_metadata,p1_0.component_metadata,p1_0.future_plans,p1_0.past_activities,p1_0.path,p1_0.purpose,p1_0.type from project p1_0 where p1_0.package_name=?
+Hibernate: select p1_0.package_name,p1_0.name,p1_0.api_metadata,p1_0.component_metadata,p1_0.future_plans,p1_0.past_activities,p1_0.path,p1_0.purpose,p1_0.type from project p1_0 where p1_0.package_name=?
+Hibernate: select p1_0.package_name,p1_0.name,p1_0.api_metadata,p1_0.component_metadata,p1_0.future_plans,p1_0.past_activities,p1_0.path,p1_0.purpose,p1_0.type from project p1_0 where p1_0.package_name=?
+Hibernate: select p1_0.package_name,p1_0.name,p1_0.api_metadata,p1_0.component_metadata,p1_0.future_plans,p1_0.past_activities,p1_0.path,p1_0.purpose,p1_0.type from project p1_0 where p1_0.package_name=?
+Hibernate: select pp1_0.package_name,pp1_0.due_date,pp1_0.priority,pp1_0.purpose,pp1_0.status from project_package pp1_0
+Hibernate: select p1_0.package_name,p1_0.name,p1_0.api_metadata,p1_0.component_metadata,p1_0.future_plans,p1_0.past_activities,p1_0.path,p1_0.purpose,p1_0.type from project p1_0 where p1_0.package_name=?
+Hibernate: select p1_0.package_name,p1_0.name,p1_0.api_metadata,p1_0.component_metadata,p1_0.future_plans,p1_0.past_activities,p1_0.path,p1_0.purpose,p1_0.type from project p1_0 where p1_0.package_name=?
+Hibernate: select p1_0.package_name,p1_0.name,p1_0.api_metadata,p1_0.component_metadata,p1_0.future_plans,p1_0.past_activities,p1_0.path,p1_0.purpose,p1_0.type from project p1_0 where p1_0.package_name=?
+Hibernate: select p1_0.package_name,p1_0.name,p1_0.api_metadata,p1_0.component_metadata,p1_0.future_plans,p1_0.past_activities,p1_0.path,p1_0.purpose,p1_0.type from project p1_0 where p1_0.package_name=?
+Hibernate: select p1_0.package_name,p1_0.name,p1_0.api_metadata,p1_0.component_metadata,p1_0.future_plans,p1_0.past_activities,p1_0.path,p1_0.purpose,p1_0.type from project p1_0 where p1_0.package_name=?
+Hibernate: select pp1_0.package_name,pp1_0.due_date,pp1_0.priority,pp1_0.purpose,pp1_0.status from project_package pp1_0
+Hibernate: select p1_0.package_name,p1_0.name,p1_0.api_metadata,p1_0.component_metadata,p1_0.future_plans,p1_0.past_activities,p1_0.path,p1_0.purpose,p1_0.type from project p1_0 where p1_0.package_name=?
+Hibernate: select p1_0.package_name,p1_0.name,p1_0.api_metadata,p1_0.component_metadata,p1_0.future_plans,p1_0.past_activities,p1_0.path,p1_0.purpose,p1_0.type from project p1_0 where p1_0.package_name=?
+Hibernate: select p1_0.package_name,p1_0.name,p1_0.api_metadata,p1_0.component_metadata,p1_0.future_plans,p1_0.past_activities,p1_0.path,p1_0.purpose,p1_0.type from project p1_0 where p1_0.package_name=?
+Hibernate: select p1_0.package_name,p1_0.name,p1_0.api_metadata,p1_0.component_metadata,p1_0.future_plans,p1_0.past_activities,p1_0.path,p1_0.purpose,p1_0.type from project p1_0 where p1_0.package_name=?
+Hibernate: select p1_0.package_name,p1_0.name,p1_0.api_metadata,p1_0.component_metadata,p1_0.future_plans,p1_0.past_activities,p1_0.path,p1_0.purpose,p1_0.type from project p1_0 where p1_0.package_name=?
+Hibernate: select pp1_0.package_name,pp1_0.due_date,pp1_0.priority,pp1_0.purpose,pp1_0.status from project_package pp1_0
+Hibernate: select p1_0.package_name,p1_0.name,p1_0.api_metadata,p1_0.component_metadata,p1_0.future_plans,p1_0.past_activities,p1_0.path,p1_0.purpose,p1_0.type from project p1_0 where p1_0.package_name=?
+Hibernate: select p1_0.package_name,p1_0.name,p1_0.api_metadata,p1_0.component_metadata,p1_0.future_plans,p1_0.past_activities,p1_0.path,p1_0.purpose,p1_0.type from project p1_0 where p1_0.package_name=?
+Hibernate: select p1_0.package_name,p1_0.name,p1_0.api_metadata,p1_0.component_metadata,p1_0.future_plans,p1_0.past_activities,p1_0.path,p1_0.purpose,p1_0.type from project p1_0 where p1_0.package_name=?
+Hibernate: select p1_0.package_name,p1_0.name,p1_0.api_metadata,p1_0.component_metadata,p1_0.future_plans,p1_0.past_activities,p1_0.path,p1_0.purpose,p1_0.type from project p1_0 where p1_0.package_name=?
+Hibernate: select p1_0.package_name,p1_0.name,p1_0.api_metadata,p1_0.component_metadata,p1_0.future_plans,p1_0.past_activities,p1_0.path,p1_0.purpose,p1_0.type from project p1_0 where p1_0.package_name=?
+Hibernate: select pp1_0.package_name,pp1_0.due_date,pp1_0.priority,pp1_0.purpose,pp1_0.status from project_package pp1_0
+Hibernate: select p1_0.package_name,p1_0.name,p1_0.api_metadata,p1_0.component_metadata,p1_0.future_plans,p1_0.past_activities,p1_0.path,p1_0.purpose,p1_0.type from project p1_0 where p1_0.package_name=?
+Hibernate: select p1_0.package_name,p1_0.name,p1_0.api_metadata,p1_0.component_metadata,p1_0.future_plans,p1_0.past_activities,p1_0.path,p1_0.purpose,p1_0.type from project p1_0 where p1_0.package_name=?
+Hibernate: select p1_0.package_name,p1_0.name,p1_0.api_metadata,p1_0.component_metadata,p1_0.future_plans,p1_0.past_activities,p1_0.path,p1_0.purpose,p1_0.type from project p1_0 where p1_0.package_name=?
+Hibernate: select p1_0.package_name,p1_0.name,p1_0.api_metadata,p1_0.component_metadata,p1_0.future_plans,p1_0.past_activities,p1_0.path,p1_0.purpose,p1_0.type from project p1_0 where p1_0.package_name=?
+Hibernate: select p1_0.package_name,p1_0.name,p1_0.api_metadata,p1_0.component_metadata,p1_0.future_plans,p1_0.past_activities,p1_0.path,p1_0.purpose,p1_0.type from project p1_0 where p1_0.package_name=?
+Hibernate: select pp1_0.package_name,pp1_0.due_date,pp1_0.priority,pp1_0.purpose,pp1_0.status from project_package pp1_0
+Hibernate: select p1_0.package_name,p1_0.name,p1_0.api_metadata,p1_0.component_metadata,p1_0.future_plans,p1_0.past_activities,p1_0.path,p1_0.purpose,p1_0.type from project p1_0 where p1_0.package_name=?
+Hibernate: select p1_0.package_name,p1_0.name,p1_0.api_metadata,p1_0.component_metadata,p1_0.future_plans,p1_0.past_activities,p1_0.path,p1_0.purpose,p1_0.type from project p1_0 where p1_0.package_name=?
+Hibernate: select p1_0.package_name,p1_0.name,p1_0.api_metadata,p1_0.component_metadata,p1_0.future_plans,p1_0.past_activities,p1_0.path,p1_0.purpose,p1_0.type from project p1_0 where p1_0.package_name=?
+Hibernate: select p1_0.package_name,p1_0.name,p1_0.api_metadata,p1_0.component_metadata,p1_0.future_plans,p1_0.past_activities,p1_0.path,p1_0.purpose,p1_0.type from project p1_0 where p1_0.package_name=?
+Hibernate: select p1_0.package_name,p1_0.name,p1_0.api_metadata,p1_0.component_metadata,p1_0.future_plans,p1_0.past_activities,p1_0.path,p1_0.purpose,p1_0.type from project p1_0 where p1_0.package_name=?
+Hibernate: select pp1_0.package_name,pp1_0.due_date,pp1_0.priority,pp1_0.purpose,pp1_0.status from project_package pp1_0
+Hibernate: select p1_0.package_name,p1_0.name,p1_0.api_metadata,p1_0.component_metadata,p1_0.future_plans,p1_0.past_activities,p1_0.path,p1_0.purpose,p1_0.type from project p1_0 where p1_0.package_name=?
+Hibernate: select p1_0.package_name,p1_0.name,p1_0.api_metadata,p1_0.component_metadata,p1_0.future_plans,p1_0.past_activities,p1_0.path,p1_0.purpose,p1_0.type from project p1_0 where p1_0.package_name=?
+Hibernate: select p1_0.package_name,p1_0.name,p1_0.api_metadata,p1_0.component_metadata,p1_0.future_plans,p1_0.past_activities,p1_0.path,p1_0.purpose,p1_0.type from project p1_0 where p1_0.package_name=?
+Hibernate: select p1_0.package_name,p1_0.name,p1_0.api_metadata,p1_0.component_metadata,p1_0.future_plans,p1_0.past_activities,p1_0.path,p1_0.purpose,p1_0.type from project p1_0 where p1_0.package_name=?
+Hibernate: select p1_0.package_name,p1_0.name,p1_0.api_metadata,p1_0.component_metadata,p1_0.future_plans,p1_0.past_activities,p1_0.path,p1_0.purpose,p1_0.type from project p1_0 where p1_0.package_name=?
+Hibernate: select pp1_0.package_name,pp1_0.due_date,pp1_0.priority,pp1_0.purpose,pp1_0.status from project_package pp1_0
+Hibernate: select p1_0.package_name,p1_0.name,p1_0.api_metadata,p1_0.component_metadata,p1_0.future_plans,p1_0.past_activities,p1_0.path,p1_0.purpose,p1_0.type from project p1_0 where p1_0.package_name=?
+Hibernate: select p1_0.package_name,p1_0.name,p1_0.api_metadata,p1_0.component_metadata,p1_0.future_plans,p1_0.past_activities,p1_0.path,p1_0.purpose,p1_0.type from project p1_0 where p1_0.package_name=?
+Hibernate: select p1_0.package_name,p1_0.name,p1_0.api_metadata,p1_0.component_metadata,p1_0.future_plans,p1_0.past_activities,p1_0.path,p1_0.purpose,p1_0.type from project p1_0 where p1_0.package_name=?
+Hibernate: select p1_0.package_name,p1_0.name,p1_0.api_metadata,p1_0.component_metadata,p1_0.future_plans,p1_0.past_activities,p1_0.path,p1_0.purpose,p1_0.type from project p1_0 where p1_0.package_name=?
+Hibernate: select p1_0.package_name,p1_0.name,p1_0.api_metadata,p1_0.component_metadata,p1_0.future_plans,p1_0.past_activities,p1_0.path,p1_0.purpose,p1_0.type from project p1_0 where p1_0.package_name=?
+Hibernate: select pp1_0.package_name,pp1_0.due_date,pp1_0.priority,pp1_0.purpose,pp1_0.status from project_package pp1_0
+Hibernate: select p1_0.package_name,p1_0.name,p1_0.api_metadata,p1_0.component_metadata,p1_0.future_plans,p1_0.past_activities,p1_0.path,p1_0.purpose,p1_0.type from project p1_0 where p1_0.package_name=?
+Hibernate: select p1_0.package_name,p1_0.name,p1_0.api_metadata,p1_0.component_metadata,p1_0.future_plans,p1_0.past_activities,p1_0.path,p1_0.purpose,p1_0.type from project p1_0 where p1_0.package_name=?
+Hibernate: select p1_0.package_name,p1_0.name,p1_0.api_metadata,p1_0.component_metadata,p1_0.future_plans,p1_0.past_activities,p1_0.path,p1_0.purpose,p1_0.type from project p1_0 where p1_0.package_name=?
+Hibernate: select p1_0.package_name,p1_0.name,p1_0.api_metadata,p1_0.component_metadata,p1_0.future_plans,p1_0.past_activities,p1_0.path,p1_0.purpose,p1_0.type from project p1_0 where p1_0.package_name=?
+Hibernate: select p1_0.package_name,p1_0.name,p1_0.api_metadata,p1_0.component_metadata,p1_0.future_plans,p1_0.past_activities,p1_0.path,p1_0.purpose,p1_0.type from project p1_0 where p1_0.package_name=?
+Hibernate: select pp1_0.package_name,pp1_0.due_date,pp1_0.priority,pp1_0.purpose,pp1_0.status from project_package pp1_0
+Hibernate: select p1_0.package_name,p1_0.name,p1_0.api_metadata,p1_0.component_metadata,p1_0.future_plans,p1_0.past_activities,p1_0.path,p1_0.purpose,p1_0.type from project p1_0 where p1_0.package_name=?
+Hibernate: select p1_0.package_name,p1_0.name,p1_0.api_metadata,p1_0.component_metadata,p1_0.future_plans,p1_0.past_activities,p1_0.path,p1_0.purpose,p1_0.type from project p1_0 where p1_0.package_name=?
+Hibernate: select p1_0.package_name,p1_0.name,p1_0.api_metadata,p1_0.component_metadata,p1_0.future_plans,p1_0.past_activities,p1_0.path,p1_0.purpose,p1_0.type from project p1_0 where p1_0.package_name=?
+Hibernate: select p1_0.package_name,p1_0.name,p1_0.api_metadata,p1_0.component_metadata,p1_0.future_plans,p1_0.past_activities,p1_0.path,p1_0.purpose,p1_0.type from project p1_0 where p1_0.package_name=?
+Hibernate: select p1_0.package_name,p1_0.name,p1_0.api_metadata,p1_0.component_metadata,p1_0.future_plans,p1_0.past_activities,p1_0.path,p1_0.purpose,p1_0.type from project p1_0 where p1_0.package_name=?
+Hibernate: select pp1_0.package_name,pp1_0.due_date,pp1_0.priority,pp1_0.purpose,pp1_0.status from project_package pp1_0
+Hibernate: select p1_0.package_name,p1_0.name,p1_0.api_metadata,p1_0.component_metadata,p1_0.future_plans,p1_0.past_activities,p1_0.path,p1_0.purpose,p1_0.type from project p1_0 where p1_0.package_name=?
+Hibernate: select p1_0.package_name,p1_0.name,p1_0.api_metadata,p1_0.component_metadata,p1_0.future_plans,p1_0.past_activities,p1_0.path,p1_0.purpose,p1_0.type from project p1_0 where p1_0.package_name=?
+Hibernate: select p1_0.package_name,p1_0.name,p1_0.api_metadata,p1_0.component_metadata,p1_0.future_plans,p1_0.past_activities,p1_0.path,p1_0.purpose,p1_0.type from project p1_0 where p1_0.package_name=?
+Hibernate: select p1_0.package_name,p1_0.name,p1_0.api_metadata,p1_0.component_metadata,p1_0.future_plans,p1_0.past_activities,p1_0.path,p1_0.purpose,p1_0.type from project p1_0 where p1_0.package_name=?
+Hibernate: select p1_0.package_name,p1_0.name,p1_0.api_metadata,p1_0.component_metadata,p1_0.future_plans,p1_0.past_activities,p1_0.path,p1_0.purpose,p1_0.type from project p1_0 where p1_0.package_name=?

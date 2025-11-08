@@ -1,0 +1,48 @@
+{
+  "projectName" : "easy-code-with-ai-backend",
+  "type" : "spring",
+  "analyzedAt" : "2025-11-08T15:25:48.3550601",
+  "projectUrl" : "http://localhost:9050",
+  "apiEndpoints" : [ {
+    "httpMethod" : "GET",
+    "path" : "/api/projects/spring",
+    "controller" : "AiController"
+  }, {
+    "httpMethod" : "GET",
+    "path" : "/api/projects/react",
+    "controller" : "AiController"
+  }, {
+    "httpMethod" : "GET",
+    "path" : "/api/main-class",
+    "controller" : "AiController"
+  }, {
+    "httpMethod" : "POST",
+    "path" : "/api/save",
+    "controller" : "AiController"
+  }, {
+    "httpMethod" : "GET",
+    "path" : "/api/full-context",
+    "controller" : "AiController"
+  } ],
+  "entities" : [ ],
+  "dependencies" : [ {
+    "groupId" : "org.springframework.boot",
+    "artifactId" : "spring-boot-starter-data-jpa",
+    "version" : null
+  }, {
+    "groupId" : "org.xerial",
+    "artifactId" : "sqlite-jdbc</artifactId>\n\t\t\t<version>3.45.1.0</version> <!-- Use a recent stable version -->\n\t\t</dependency>\n\t\t<!-- Correct Hibernate Dialect for SQLite (for Hibernate 6 / Spring Boot 3.x) -->\n\t\t<dependency>\n\t\t\t<groupId>org.hibernate.orm</groupId>\n\t\t\t<artifactId>hibernate-community-dialects</artifactId>\n\t\t\t<!-- No version needed here if using Spring Boot parent, it will manage it -->\n\t\t</dependency>\n\t\t<dependency>\n\t\t\t<groupId>org.springframework.boot</groupId>\n\t\t\t<artifactId>spring-boot-starter-web",
+    "version" : null
+  } ],
+  "configuration" : {
+    "spring.application.name" : "easy-code-with-ai-backend",
+    "server.port" : "9050",
+    "spring.datasource.url" : "jdbc:sqlite:projecthub.db",
+    "spring.datasource.driver-class-name" : "org.sqlite.JDBC",
+    "spring.jpa.database-platform" : "org.hibernate.community.dialect.SQLiteDialect",
+    "spring.jpa.hibernate.ddl-auto" : "update",
+    "spring.jpa.show-sql" : "true"
+  },
+  "error" : null,
+  "summary" : null
+}
