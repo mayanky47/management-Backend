@@ -1,5 +1,7 @@
 package com.example.demo.controller.autoSaveController;
 
+import com.example.demo.config.AppConfig;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,19 +19,15 @@ import java.util.stream.Stream;
 @RequestMapping("/api")
 public class AutoSaveController {
 
-    // --- Configuration ---
-    // Set the base paths for your backend and frontend projects.
-    private final Path backendBasePath = Paths.get("D:", "project", "projects", "backend");
-    private final Path frontendBasePath = Paths.get("D:", "project", "projects", "frontend");
-    // --- End Configuration ---
-
+    @Autowired
+    private AppConfig appConfig;
 
     /**
      * Endpoint to get the list of Spring projects by scanning the backend directory.
      */
     @GetMapping("/projects/spring")
     public ResponseEntity<?> getSpringProjects() {
-        return listSubdirectories(backendBasePath);
+        return listSubdirectories(appConfig.getBackendPath());
     }
 
     /**
@@ -37,13 +35,11 @@ public class AutoSaveController {
      */
     @GetMapping("/projects/react")
     public ResponseEntity<?> getReactProjects() {
-        return listSubdirectories(frontendBasePath);
+        return listSubdirectories(appConfig.getFrontendPath());
     }
 
     /**
      * Endpoint to fetch the main class content for the AI prompt.
-     * It now scans the project's src/main/java directory to find the file
-     * containing "@SpringBootApplication".
      */
     @GetMapping("/main-class")
     public ResponseEntity<String> getMainClass(@RequestParam String project) {
@@ -51,7 +47,9 @@ public class AutoSaveController {
             return ResponseEntity.badRequest().body("// Project name is required.");
         }
 
-        Path projectDir = backendBasePath.resolve(project);
+        // Use Config Path
+        Path projectDir = appConfig.getBackendPath().resolve(project);
+
         if (!Files.isDirectory(projectDir)) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
                     .body("// Error: Project directory not found: " + projectDir);
@@ -112,8 +110,6 @@ public class AutoSaveController {
 
     /**
      * Endpoint to analyze and save the file.
-     * It now determines the correct base path (backend/frontend) and project path
-     * to save the file to the real file system.
      */
     @PostMapping("/save")
     public ResponseEntity<?> saveFile(@RequestBody FileSaveRequest request) {
@@ -148,10 +144,10 @@ public class AutoSaveController {
         String targetProjectName;
 
         if (relativePathStr.contains("src/main/java") || relativePathStr.contains("src/main/resources")) {
-            targetBaseDir = backendBasePath;
+            targetBaseDir = appConfig.getBackendPath(); // Use Config
             targetProjectName = request.getSpringProject();
         } else if (relativePathStr.contains("src/") && (relativePathStr.endsWith(".tsx") || relativePathStr.endsWith(".jsx") || relativePathStr.endsWith(".ts") || relativePathStr.endsWith(".css"))) {
-            targetBaseDir = frontendBasePath;
+            targetBaseDir = appConfig.getFrontendPath(); // Use Config
             targetProjectName = request.getReactProject();
         } else {
             return ResponseEntity.badRequest().body(Map.of("message", "Could not determine project type from path: " + relativePathStr));
@@ -163,8 +159,6 @@ public class AutoSaveController {
 
         // --- Step 3: Save the file ---
         try {
-            // Build the final absolute path
-            // e.g., D:\project\projects\backend\demo-api-project\src\main\java\com\example\demo\MyService.java
             Path finalPath = targetBaseDir.resolve(targetProjectName).resolve(relativePath);
 
             // Ensure parent directories exist
@@ -178,7 +172,6 @@ public class AutoSaveController {
 
             System.out.println("File saved: " + finalPath.toAbsolutePath());
 
-            // Return a success response
             return ResponseEntity.ok(Map.of(
                     "message", "File saved successfully.",
                     "path", finalPath.toString()
@@ -195,7 +188,6 @@ public class AutoSaveController {
 
     /**
      * NEW Endpoint: Generates a full context prompt by reading all files
-     * from both selected projects.
      */
     @GetMapping("/full-context")
     public ResponseEntity<String> getFullContext(
@@ -211,7 +203,7 @@ public class AutoSaveController {
         fullContext.append("You will decide which project any new files belong to.\n\n");
 
         // --- 1. Get Spring Project Context ---
-        Path springProjectDir = backendBasePath.resolve(springProject);
+        Path springProjectDir = appConfig.getBackendPath().resolve(springProject); // Use Config
         if (!Files.isDirectory(springProjectDir)) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("// Error: Spring project not found: " + springProject);
         }
@@ -226,7 +218,7 @@ public class AutoSaveController {
 
 
         // --- 2. Get React Project Context ---
-        Path reactProjectDir = frontendBasePath.resolve(reactProject);
+        Path reactProjectDir = appConfig.getFrontendPath().resolve(reactProject); // Use Config
         if (!Files.isDirectory(reactProjectDir)) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("// Error: React project not found: " + reactProject);
         }
@@ -302,10 +294,6 @@ public class AutoSaveController {
         }
     }
 
-
-    /**
-     * Helper to list subdirectories in a given path.
-     */
     private ResponseEntity<?> listSubdirectories(Path basePath) {
         if (!Files.isDirectory(basePath)) {
             String errorMsg = "Configuration error: Base path not found: " + basePath;
@@ -328,17 +316,13 @@ public class AutoSaveController {
         }
     }
 
-    /**
-     * A check to ensure the path is relative and safe.
-     */
     private boolean isValidPath(String path) {
         if (path.contains("..")) {
-            return false; // Disallow directory traversal
+            return false;
         }
         if (Paths.get(path).isAbsolute()) {
-            return false; // Disallow absolute paths
+            return false;
         }
-        // Must contain a path separator and a file extension
         return (path.contains("/") || path.contains("\\")) && path.contains(".");
     }
 }

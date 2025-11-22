@@ -6,6 +6,7 @@ import com.example.demo.model.packageModel.ProjectPackage;
 import com.example.demo.repository.ProjectPackageRepository;
 import com.example.demo.repository.ProjectRepository;
 import com.example.demo.service.ProjectCreationService;
+import com.example.demo.service.packageService.ProjectPackageService;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -28,6 +29,9 @@ public class PackageController {
 
     @Autowired
     private ProjectCreationService projectCreationService;
+
+    @Autowired
+    private ProjectPackageService projectPackageService;
 
     private static final String DEFAULT_PROJECT_BASE_DIR = "D:\\project\\projects";
     private static final String DB_MANAGED_PATH = "DB_MANAGED_PACKAGE";
@@ -62,53 +66,12 @@ public class PackageController {
     @PostMapping
     @Transactional
     public ResponseEntity<ProjectPackage> createPackage(@RequestBody ProjectPackage pkg) {
-        if (pkg.getName() == null || pkg.getName().trim().isEmpty()) {
+        try {
+            ProjectPackage createdPackage = projectPackageService.createPackage(pkg);
+            return ResponseEntity.status(HttpStatus.CREATED).body(createdPackage);
+        } catch (Exception e) {
             return ResponseEntity.badRequest().body(null);
         }
-
-        if (projectPackageRepository.existsById(pkg.getName())) {
-            return ResponseEntity.status(HttpStatus.CONFLICT).body(null); // 409 Conflict
-        }
-
-        // 1. Prepare Package entity (set DB path, clear transient list for safety before saving)
-        List<Project> projectsToCreate = pkg.getProjects();
-        pkg.setProjects(projectsToCreate);
-
-
-
-        // 3. Create and save the new Projects
-        if (projectsToCreate != null) {
-            for (Project project : projectsToCreate) {
-                if (project.getName() == null || project.getName().trim().isEmpty() || project.getType() == null) {
-                    throw new IllegalArgumentException("Sub-project must have a name and type.");
-                }
-                System.out.println("Creating sub-project: " + project.getName() + " of type: " + project.getType());
-                // Check for project name conflict globally
-                if (projectRepository.existsById(project.getName())) {
-                    throw new RuntimeException("Project name conflict: " + project.getName() + " already exists. Cannot create sub-project.");
-                }
-
-
-                // Set defaults (path, purpose, status, etc.)
-                try {
-                    projectCreationService.createProject(project);
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                } catch (InterruptedException e) {
-                    throw new RuntimeException(e);
-                }
-
-                // Save the new Project
-                projectRepository.save(project);
-            }
-            // 2. Save the Package
-        }
-        ProjectPackage savedPackage = projectPackageRepository.save(pkg);
-
-        // 4. Fetch the package again to include the newly created projects in the response
-        return projectPackageRepository.findById(savedPackage.getName())
-                .map(p -> ResponseEntity.status(HttpStatus.CREATED).body(p))
-                .orElseGet(() -> ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null));
     }
 
 

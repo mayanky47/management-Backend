@@ -1,5 +1,6 @@
 package com.example.demo.service;
 
+import com.example.demo.config.AppConfig;
 import com.example.demo.model.projectModel.Project;
 import com.example.demo.repository.ProjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +12,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 
 @Service
 public class ProjectCreationService {
@@ -20,10 +20,11 @@ public class ProjectCreationService {
             + File.separator + "src" + File.separator + "main" + File.separator + "resources"
             + File.separator + "create_react_project.bat";
 
-    private static final String DEFAULT_PROJECT_BASE_DIR = "D:\\project\\projects";
-
     @Autowired
     private ProjectRepository projectRepository;
+
+    @Autowired
+    private AppConfig appConfig;
 
     public Project createProject(Project project) throws IOException, InterruptedException {
 
@@ -38,32 +39,31 @@ public class ProjectCreationService {
             throw new IllegalStateException("Project with name '" + project.getName() + "' already exists.");
         }
 
-        String subfolder = "";
         String creationCommand = "";
         Path workingDirectory;
 
         switch (project.getType()) {
             case "React" -> {
-                subfolder = "frontend";
-                workingDirectory = Paths.get(System.getProperty("user.dir")); // Script runs from project root
+                // Use Config Path for Working Directory
+                workingDirectory = java.nio.file.Paths.get(System.getProperty("user.dir")); // Script runs from project root
 
                 File scriptFile = new File(CREATE_REACT_SCRIPT_PATH);
                 if (!scriptFile.exists() || !scriptFile.isFile()) {
                     throw new IOException("React project creation script not found at: " + CREATE_REACT_SCRIPT_PATH);
                 }
 
+                // Pass the Configured Frontend Path to the script
                 creationCommand = CREATE_REACT_SCRIPT_PATH + " \"" + project.getName() + "\" \"" +
-                        DEFAULT_PROJECT_BASE_DIR + File.separator + "frontend" + "\"";
+                        appConfig.getFrontendPath().toString() + "\"";
             }
             case "Spring" -> {
-                subfolder = "backend";
-                workingDirectory = Paths.get(DEFAULT_PROJECT_BASE_DIR + File.separator + "backend");
+                // Use Config Path for Working Directory
+                workingDirectory = appConfig.getBackendPath();
                 creationCommand = "spring init --dependencies=web,jpa --build=maven --packaging=jar --java-version=17 --name="
                         + project.getName() + " " + project.getName();
             }
             default -> {
-                subfolder = "";
-                workingDirectory = Paths.get(DEFAULT_PROJECT_BASE_DIR);
+                workingDirectory = appConfig.getRootPath();
                 Path projectDir = workingDirectory.resolve(project.getName());
                 Files.createDirectories(projectDir);
                 project.setPath(projectDir.toString());
@@ -71,7 +71,10 @@ public class ProjectCreationService {
             }
         }
 
-        project.setPath(DEFAULT_PROJECT_BASE_DIR + File.separator + subfolder + File.separator + project.getName());
+        // Set the final path based on config
+        Path baseDir = ("React".equals(project.getType())) ? appConfig.getFrontendPath() : appConfig.getBackendPath();
+        project.setPath(baseDir.resolve(project.getName()).toString());
+
         executeCommand(creationCommand, workingDirectory, project.getName());
         return projectRepository.save(project);
     }

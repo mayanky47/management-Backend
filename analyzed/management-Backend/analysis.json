@@ -1,9 +1,17 @@
 {
   "projectName" : "management-Backend",
   "type" : "spring",
-  "analyzedAt" : "2025-11-08T04:57:18.3441976",
+  "analyzedAt" : "2025-11-22T11:24:38.1555254",
   "projectUrl" : "http://localhost:8080",
   "apiEndpoints" : [ {
+    "httpMethod" : "POST",
+    "path" : "/api/analyze/projects/{name}",
+    "controller" : "AnalysisController"
+  }, {
+    "httpMethod" : "GET",
+    "path" : "/api/analyze/{projectName}/graph",
+    "controller" : "GraphController"
+  }, {
     "httpMethod" : "POST",
     "path" : "/api/projects/{name}/analyze/spring",
     "controller" : "SpringAnalyzerController"
@@ -12,31 +20,63 @@
     "path" : "/api/projects/{name}/analysis",
     "controller" : "SpringAnalyzerController"
   }, {
+    "httpMethod" : "GET",
+    "path" : "/api/projects/spring",
+    "controller" : "AutoSaveController"
+  }, {
+    "httpMethod" : "GET",
+    "path" : "/api/projects/react",
+    "controller" : "AutoSaveController"
+  }, {
+    "httpMethod" : "GET",
+    "path" : "/api/main-class",
+    "controller" : "AutoSaveController"
+  }, {
     "httpMethod" : "POST",
-    "path" : "/api/analyze/projects/{name}",
-    "controller" : "AnalysisController"
+    "path" : "/api/save",
+    "controller" : "AutoSaveController"
+  }, {
+    "httpMethod" : "GET",
+    "path" : "/api/full-context",
+    "controller" : "AutoSaveController"
+  }, {
+    "httpMethod" : "PUT",
+    "path" : "/api/entries/{id}",
+    "controller" : "DiaryEntryController"
+  }, {
+    "httpMethod" : "DELETE",
+    "path" : "/api/entries/{id}",
+    "controller" : "DiaryEntryController"
+  }, {
+    "httpMethod" : "GET",
+    "path" : "/api/flows/{projectName}",
+    "controller" : "FlowController"
+  }, {
+    "httpMethod" : "PUT",
+    "path" : "/api/flows/{id}",
+    "controller" : "FlowController"
+  }, {
+    "httpMethod" : "DELETE",
+    "path" : "/api/flows/{id}",
+    "controller" : "FlowController"
+  }, {
+    "httpMethod" : "GET",
+    "path" : "/api/packages/{name}",
+    "controller" : "PackageController"
+  }, {
+    "httpMethod" : "PUT",
+    "path" : "/api/packages/{name}",
+    "controller" : "PackageController"
+  }, {
+    "httpMethod" : "DELETE",
+    "path" : "/api/packages/{name}",
+    "controller" : "PackageController"
   }, {
     "httpMethod" : "POST",
     "path" : "/api/create/projects",
     "controller" : "CreateProjectController"
   }, {
     "httpMethod" : "GET",
-    "path" : "/hello",
-    "controller" : "HelloController"
-  }, {
-    "httpMethod" : "GET",
-    "path" : "/api/packages/{name}",
-    "controller" : "PackageController"
-  }, {
-    "httpMethod" : "PUT",
-    "path" : "/api/packages/{name}",
-    "controller" : "PackageController"
-  }, {
-    "httpMethod" : "DELETE",
-    "path" : "/api/packages/{name}",
-    "controller" : "PackageController"
-  }, {
-    "httpMethod" : "GET",
     "path" : "/api/projects",
     "controller" : "ProjectController"
   }, {
@@ -54,6 +94,10 @@
   }, {
     "httpMethod" : "DELETE",
     "path" : "/api/projects/{name}",
+    "controller" : "ProjectController"
+  }, {
+    "httpMethod" : "POST",
+    "path" : "/api/projects/{name}/analyze",
     "controller" : "ProjectController"
   }, {
     "httpMethod" : "POST",
@@ -61,14 +105,20 @@
     "controller" : "ProjectController"
   } ],
   "entities" : [ {
-    "name" : "SpringAnalyzerService",
-    "tableName" : "@Table("
+    "name" : "DiaryEntry",
+    "tableName" : null
   }, {
-    "name" : "Project",
+    "name" : "ProjectFlow",
     "tableName" : null
   }, {
     "name" : "ProjectPackage",
     "tableName" : null
+  }, {
+    "name" : "Project",
+    "tableName" : null
+  }, {
+    "name" : "SpringAnalyzerService",
+    "tableName" : "@Table("
   } ],
   "dependencies" : [ {
     "groupId" : "org.springframework.boot",
@@ -82,13 +132,22 @@
     "groupId" : "org.springdoc",
     "artifactId" : "springdoc-openapi-starter-webmvc-ui",
     "version" : "2.2.0"
+  }, {
+    "groupId" : "org.eclipse.jgit",
+    "artifactId" : "org.eclipse.jgit",
+    "version" : "6.9.0.202403050737-r"
+  }, {
+    "groupId" : "org.xerial",
+    "artifactId" : "sqlite-jdbc",
+    "version" : "3.45.1.0</version> <!-- Use a recent stable version -->\r\n    </dependency>\r\n    <!-- Correct Hibernate Dialect for SQLite (for Hibernate 6 / Spring Boot 3.x) -->\r\n    <dependency>\r\n      <groupId>org.hibernate.orm</groupId>\r\n      <artifactId>hibernate-community-dialects</artifactId>\r\n      <!-- No version needed here if using Spring Boot parent, it will manage it -->\r\n    </dependency>\r\n\r\n    <dependency>\r\n      <groupId>com.github.javaparser</groupId>\r\n      <artifactId>javaparser-core</artifactId>\r\n      <version>3.25.9"
   } ],
   "configuration" : {
     "spring.datasource.url" : "jdbc:sqlite:projecthub.db",
     "spring.datasource.driver-class-name" : "org.sqlite.JDBC",
     "spring.jpa.database-platform" : "org.hibernate.community.dialect.SQLiteDialect",
     "spring.jpa.hibernate.ddl-auto" : "update",
-    "spring.jpa.show-sql" : "true"
+    "spring.jpa.show-sql" : "true",
+    "app.projects.base-dir" : "D:/project/projects"
   },
   "error" : null,
   "summary" : null

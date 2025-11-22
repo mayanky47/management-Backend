@@ -33,6 +33,11 @@
       <version>2.2.0</version>
     </dependency>
 
+    <dependency>
+      <groupId>org.eclipse.jgit</groupId>
+      <artifactId>org.eclipse.jgit</artifactId>
+      <version>6.9.0.202403050737-r</version>
+    </dependency>
     <!-- SQLite JDBC Driver -->
     <dependency>
       <groupId>org.xerial</groupId>
@@ -46,6 +51,11 @@
       <!-- No version needed here if using Spring Boot parent, it will manage it -->
     </dependency>
 
+    <dependency>
+      <groupId>com.github.javaparser</groupId>
+      <artifactId>javaparser-core</artifactId>
+      <version>3.25.9</version>
+    </dependency>
     <!-- Lombok for boilerplate code reduction (optional, but highly recommended) -->
     <dependency>
       <groupId>org.projectlombok</groupId>

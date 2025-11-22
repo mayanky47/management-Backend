@@ -1,16 +1,17 @@
 package com.example.demo.controller.projectController;
 
+import com.example.demo.config.AppConfig;
 import com.example.demo.model.projectModel.Project;
 import com.example.demo.repository.ProjectRepository;
-import com.example.demo.service.analyzeService.AnalysisService; // Import AnalysisService
+import com.example.demo.service.analyzeService.AnalysisService;
 import com.example.demo.service.DependencyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException; // Import ResponseStatusException
+import org.springframework.web.server.ResponseStatusException;
 
-import java.io.IOException; // Import IOException
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -22,22 +23,22 @@ import java.util.function.BiConsumer;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-@RestController // Marks this class as a REST controller
-@RequestMapping("/api") // Base path for all endpoints in this controller
+@RestController
+@RequestMapping("/api")
 public class ProjectController {
 
     @Autowired
     private ProjectRepository projectRepository;
 
-    // --- NEW: Autowire AnalysisService ---
     @Autowired
     private AnalysisService analysisService;
 
     @Autowired
     private DependencyService dependencyService;
 
-    // Define the fixed base directory for project discovery and creation
-    private static final String DEFAULT_PROJECT_BASE_DIR = "D:\\project\\projects";
+    // --- NEW: Inject Config ---
+    @Autowired
+    private AppConfig appConfig;
 
     // List of common build/dependency folders that should NEVER be treated as projects
     private static final List<String> EXCLUDED_BUILD_DEPENDENCY_FOLDERS = List.of(
@@ -45,21 +46,14 @@ public class ProjectController {
             "src", "main", "test", "resources", "lib", "vendor", "docs", "temp", "tmp", "logs"
     );
 
-    /**
-     * Helper method to determine project type based on path/name heuristics.
-     * This is primarily used for new project creation or if a type isn't explicitly set.
-     * @param path The full path of the project folder.
-     * @param name The name of the project folder.
-     * @return A string representing the determined project type.
-     */
     private String determineProjectType(String path, String name) {
         String lowerCasePath = path.toLowerCase();
         String lowerCaseName = name.toLowerCase();
 
         if (lowerCasePath.contains("frontend") || lowerCaseName.contains("react") || lowerCaseName.contains("angular") || lowerCaseName.contains("vue")) {
-            return "React"; // Broaden to include other frontend types
+            return "React";
         } else if (lowerCasePath.contains("backend") || lowerCaseName.contains("spring") || lowerCaseName.contains("java") || lowerCaseName.contains("kotlin")) {
-            return "Spring"; // Broaden to include other backend types
+            return "Spring";
         } else if (lowerCaseName.contains("python") || lowerCaseName.contains("django") || lowerCaseName.contains("flask")) {
             return "Python";
         } else if (lowerCaseName.contains("html") || lowerCaseName.contains("css") || lowerCaseName.contains("js") || lowerCaseName.contains("website") || lowerCaseName.contains("web")) {
@@ -68,17 +62,9 @@ public class ProjectController {
         return "Other";
     }
 
-    /**
-     * Retrieves all projects by specifically scanning the 'frontend' and 'backend'
-     * subdirectories of the base path. It merges discovered folders with information
-     * from the database. Organizational folders and common build/dependency folders
-     * are excluded.
-     */
     @GetMapping("/projects")
     public ResponseEntity<List<Project>> getAllProjects(@RequestParam(required = false) String directoryPath) {
-        // Fetch all projects currently stored in the database
         List<Project> allProjectsFromDb = projectRepository.findAll();
-        // Use a map to store final projects, using name as key to handle duplicates (DB data takes precedence)
         ConcurrentHashMap<String, Project> finalProjectsMap = new ConcurrentHashMap<>();
 
         // --- Cleanup: Remove DB records for projects not found on file system ---
@@ -93,24 +79,20 @@ public class ProjectController {
 
         for (Project project : projectsToDeleteFromDb) {
             projectRepository.deleteById(project.getName());
-            // Remove from the initial list so it's not re-added to finalProjectsMap
             allProjectsFromDb.remove(project);
         }
-        // --- End Cleanup ---
 
-        // Add remaining projects from DB to the map first. These are the authoritative versions.
         allProjectsFromDb.forEach(project -> finalProjectsMap.put(project.getName(), project));
 
-        Path baseDirPath = Paths.get(DEFAULT_PROJECT_BASE_DIR);
-        Path frontendDirPath = baseDirPath.resolve("frontend");
-        Path backendDirPath = baseDirPath.resolve("backend");
+        // Use Config Paths
+        Path frontendDirPath = appConfig.getFrontendPath();
+        Path backendDirPath = appConfig.getBackendPath();
 
-        // Helper: Use BiConsumer for lambda that accepts two arguments
         BiConsumer<Path, String> scanDirectory = (dirPath, projectType) -> {
             if (Files.exists(dirPath) && Files.isDirectory(dirPath)) {
-                try (Stream<Path> paths = Files.walk(dirPath, 1)) { // Depth 1 to get direct children
-                    paths.filter(Files::isDirectory) // Only consider directories
-                            .filter(path -> !path.equals(dirPath)) // Exclude the directory itself
+                try (Stream<Path> paths = Files.walk(dirPath, 1)) {
+                    paths.filter(Files::isDirectory)
+                            .filter(path -> !path.equals(dirPath))
                             .filter(path -> {
                                 String folderName = path.getFileName().toString().toLowerCase();
                                 return !EXCLUDED_BUILD_DEPENDENCY_FOLDERS.contains(folderName);
@@ -118,10 +100,8 @@ public class ProjectController {
                             .forEach(path -> {
                                 String folderName = path.getFileName().toString();
                                 String fullPath = path.toString();
-                                // If the project is not already in the map (from DB or prior scan), add it
-                                // DB entries would have been added already and take precedence
                                 if (!finalProjectsMap.containsKey(folderName)) {
-                                    Project discoveredProject = new Project(folderName, projectType, fullPath, "", "", "", null, null); // Updated constructor
+                                    Project discoveredProject = new Project(folderName, projectType, fullPath, "", "", "", null, null);
                                     finalProjectsMap.put(folderName, discoveredProject);
                                 }
                             });
@@ -131,16 +111,11 @@ public class ProjectController {
             }
         };
 
-        // 1. Scan frontend directory for React projects
         scanDirectory.accept(frontendDirPath, "React");
-
-        // 2. Scan backend directory for Spring projects
         scanDirectory.accept(backendDirPath, "Spring");
 
         List<Project> resultProjects = new ArrayList<>(finalProjectsMap.values());
 
-        // The directoryPath parameter from frontend is no longer used for filtering here,
-        // as the scanning is now targeted.
         if (directoryPath != null && !directoryPath.isEmpty()) {
             resultProjects = resultProjects.stream()
                     .filter(project -> project.getPath() != null && project.getPath().startsWith(directoryPath))
@@ -148,22 +123,14 @@ public class ProjectController {
         }
         return ResponseEntity.ok(resultProjects);
     }
-    /**
-     * Retrieves a single project by its Name (which is now the ID).
-     */
+
     @GetMapping("/projects/{name}")
     public ResponseEntity<Project> getProjectByName(@PathVariable String name) {
-        Optional<Project> project = projectRepository.findById(name); // Use repository to find by Name
+        Optional<Project> project = projectRepository.findById(name);
         return project.map(ResponseEntity::ok)
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    /**
-     * Creates a new project.
-     * The project's name is used as its ID. The path is constructed based on type and name
-     * using the fixed default base directory. The project is then saved to the database.
-     * Returns 409 Conflict if a project with the same name already exists.
-     */
     @PostMapping("/projects")
     public ResponseEntity<Project> createProject(@RequestBody Project project) {
         if (project.getName() == null || project.getName().trim().isEmpty() ||
@@ -171,32 +138,30 @@ public class ProjectController {
             return ResponseEntity.badRequest().build();
         }
 
-        // Check if a project with this name already exists
         if (projectRepository.existsById(project.getName())) {
-            return ResponseEntity.status(HttpStatus.CONFLICT).build(); // 409 Conflict
+            return ResponseEntity.status(HttpStatus.CONFLICT).build();
         }
 
-        String subfolder = "";
+        Path baseDir;
         if ("React".equals(project.getType())) {
-            subfolder = "frontend\\"; // Use double backslash for Windows paths in Java strings
+            baseDir = appConfig.getFrontendPath(); // Use Config
         } else if ("Spring".equals(project.getType())) {
-            subfolder = "backend\\"; // Use double backslash for Windows paths in Java strings
+            baseDir = appConfig.getBackendPath(); // Use Config
+        } else {
+            // Fallback or default
+            baseDir = appConfig.getRootPath();
         }
-        // Construct path using the fixed DEFAULT_PROJECT_BASE_DIR
-        project.setPath(DEFAULT_PROJECT_BASE_DIR + "\\" + subfolder + project.getName()); // Use double backslash
 
-        Project savedProject = projectRepository.save(project); // Save the new project to the database
+        // Construct path
+        project.setPath(baseDir.resolve(project.getName()).toString());
+
+        Project savedProject = projectRepository.save(project);
         return ResponseEntity.status(HttpStatus.CREATED).body(savedProject);
     }
 
-    /**
-     * Updates an existing project.
-     * The path is re-calculated based on the new type and name using a fixed default base directory.
-     * The updated project is then saved to the database.
-     */
     @PutMapping("/projects/{name}")
     public ResponseEntity<Project> updateProject(@PathVariable String name, @RequestBody Project project) {
-        if (!projectRepository.existsById(name)) { // Check if project exists in DB by name
+        if (!projectRepository.existsById(name)) {
             return ResponseEntity.notFound().build();
         }
         if (project.getName() == null || project.getName().trim().isEmpty() ||
@@ -204,43 +169,34 @@ public class ProjectController {
             return ResponseEntity.badRequest().build();
         }
 
-        // Ensure the name in the request body matches the path variable
         project.setName(name);
 
-        String subfolder = "";
+        Path baseDir;
         if ("React".equals(project.getType())) {
-            subfolder = "frontend\\"; // Use double backslash for Windows paths in Java strings
+            baseDir = appConfig.getFrontendPath();
         } else if ("Spring".equals(project.getType())) {
-            subfolder = "backend\\"; // Use double backslash for Windows paths in Java strings
+            baseDir = appConfig.getBackendPath();
+        } else {
+            baseDir = appConfig.getRootPath();
         }
-        // Re-calculate path using the fixed DEFAULT_PROJECT_BASE_DIR
-        project.setPath(DEFAULT_PROJECT_BASE_DIR + "\\" + subfolder + project.getName()); // Use double backslash
 
-        Project updatedProject = projectRepository.save(project); // Save the updated project to the database
+        project.setPath(baseDir.resolve(project.getName()).toString());
+
+        Project updatedProject = projectRepository.save(project);
         return ResponseEntity.ok(updatedProject);
     }
 
-    /**
-     * Deletes a project by its Name (ID) from the database.
-     */
     @DeleteMapping("/projects/{name}")
     public ResponseEntity<Void> deleteProject(@PathVariable String name) {
-        if (projectRepository.existsById(name)) { // Check if project exists before deleting
-            projectRepository.deleteById(name); // Delete from the database
+        if (projectRepository.existsById(name)) {
+            projectRepository.deleteById(name);
             return ResponseEntity.noContent().build();
         }
         return ResponseEntity.notFound().build();
     }
 
-    // --- NEW: Moved analyzeProject endpoint here ---
-    /**
-     * Triggers an analysis of a specific project by its name.
-     * @param name The name of the project (which is its ID).
-     * @return The updated Project object with analysis metadata.
-     */
-    @PostMapping("/projects/{name}/analyze") // New descriptive path
+    @PostMapping("/projects/{name}/analyze")
     public ResponseEntity<Project> analyzeProject(@PathVariable String name) {
-        // 1. Find the project
         Optional<Project> projectOpt = projectRepository.findById(name);
         if (projectOpt.isEmpty()) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Project not found: " + name);
@@ -248,7 +204,6 @@ public class ProjectController {
 
         Project project = projectOpt.get();
 
-        // 2. Run the analysis
         try {
             Project updatedProject = analysisService.analyzeProject(project);
             return ResponseEntity.ok(updatedProject);
@@ -260,7 +215,6 @@ public class ProjectController {
 
     @PostMapping("/projects/{name}/dependencies/add-sqlite")
     public ResponseEntity<String> addSqliteSupport(@PathVariable String name) {
-        // 1. Find the project
         Optional<Project> projectOpt = projectRepository.findById(name);
         if (projectOpt.isEmpty()) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Project not found: " + name);
@@ -268,7 +222,6 @@ public class ProjectController {
 
         Project project = projectOpt.get();
 
-        // 2. Call the dependency service
         try {
             dependencyService.addSQLiteSupport(project);
             return ResponseEntity.ok("Successfully added SQLite support to " + name);
@@ -281,4 +234,3 @@ public class ProjectController {
         }
     }
 }
-

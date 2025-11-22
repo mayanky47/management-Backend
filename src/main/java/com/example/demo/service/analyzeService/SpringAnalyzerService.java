@@ -1,5 +1,6 @@
 package com.example.demo.service.analyzeService;
 
+import com.example.demo.config.AppConfig;
 import com.example.demo.model.analyzeModel.ApiEndpoint;
 import com.example.demo.model.analyzeModel.DependencyInfo;
 import com.example.demo.model.analyzeModel.EntityInfo;
@@ -7,6 +8,7 @@ import com.example.demo.model.analyzeModel.ProjectAnalysisResult;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.*;
@@ -19,7 +21,9 @@ import java.util.stream.Stream;
 @Service
 public class SpringAnalyzerService {
 
-    private static final Path BASE_DIR = Paths.get("D:/project/projects/backend");
+    @Autowired
+    private AppConfig appConfig;
+
     private static final Path ANALYSIS_DIR = Paths.get("analyzed");
 
     private final ObjectMapper objectMapper = new ObjectMapper()
@@ -34,7 +38,8 @@ public class SpringAnalyzerService {
         result.setProjectName(projectName);
         result.setAnalyzedAt(LocalDateTime.now());
 
-        Path projectPath = BASE_DIR.resolve(projectName);
+        // Use Config Path
+        Path projectPath = appConfig.getBackendPath().resolve(projectName);
 
         if (!Files.exists(projectPath)) {
             result.setError("❌ Project directory not found: " + projectPath);
@@ -58,15 +63,13 @@ public class SpringAnalyzerService {
             result.setEntities(scanEntities(projectPath));
             result.setDependencies(readPomDependencies(projectPath));
 
-            // --- ⭐️ MODIFICATION IS HERE ---
-
             // 1. Get the configuration map
             Map<String, String> config = readApplicationProperties(projectPath);
             result.setConfiguration(config);
 
             // 2. Build and set the projectUrl from the config
-            String port = config.getOrDefault("server.port", "8080"); // <-- NEW
-            String contextPath = config.getOrDefault("server.servlet.context-path", ""); // <-- NEW
+            String port = config.getOrDefault("server.port", "8080");
+            String contextPath = config.getOrDefault("server.servlet.context-path", "");
 
             // 3. Set the final URL (with path normalization)
             if (!contextPath.isBlank() && !contextPath.startsWith("/")) {
@@ -75,9 +78,7 @@ public class SpringAnalyzerService {
             if (contextPath.endsWith("/")) {
                 contextPath = contextPath.substring(0, contextPath.length() - 1);
             }
-            result.setProjectUrl("http://localhost:" + port + contextPath); // <-- NEW
-
-            // --- ⭐️ END OF MODIFICATION ---
+            result.setProjectUrl("http://localhost:" + port + contextPath);
 
             saveResult(projectName, result);
 
@@ -114,7 +115,6 @@ public class SpringAnalyzerService {
             String pomContent = Files.readString(pom);
             if (pomContent.contains("spring-boot-starter")) return true;
 
-            // If no POM clue, check Java sources for annotations
             try (Stream<Path> stream = Files.walk(projectPath)) {
                 return stream
                         .filter(p -> p.toString().endsWith(".java"))
